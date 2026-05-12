@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Secrets / private keys
+*.key
+*.pem
+*.p12
+*.pfx
+.env
+keys/
+
+# REMEDA private core
+private_core/
+core/
+internal_engine/
+billing/
+rate_limit/
+secrets/
+
+# Local DB / logs
+*.db
+*.sqlite
+logs/

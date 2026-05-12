@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<title>REMEDA Stage327</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.container{max-width:1120px;margin:auto}
+.card{background:#111827;border:1px solid #334155;border-radius:18px;padding:24px;margin-bottom:20px}
+.badge{display:inline-block;background:#1d4ed8;padding:6px 12px;border-radius:999px;margin-right:8px}
+.badge2{display:inline-block;background:#065f46;padding:6px 12px;border-radius:999px;margin-right:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.mini{background:#020617;border:1px solid #1e293b;border-radius:14px;padding:16px}
+pre{background:#020617;border-radius:12px;padding:16px;overflow-x:auto;border:1px solid #1e293b}
+input,select,textarea{box-sizing:border-box;border-radius:8px;border:1px solid #334155;background:#020617;color:#e5e7eb;padding:10px}
+button{background:#1d4ed8;color:white;border:0;border-radius:10px;padding:12px 18px;font-weight:700}
+a{color:#93c5fd}
+.warning{background:#3f1d1d;border:1px solid #7f1d1d;color:#fecaca;padding:16px;border-radius:14px}
+.ok{color:#86efac}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+<span class="badge">REMEDA</span>
+<span class="badge2">Stage327</span>
+<h1>Reproduction Evidence Schema</h1>
+<p>
+Stage327 extends Stage326 by converting AI vulnerability reproduction results into a standardized,
+SHA256-bound evidence schema.
+</p>
+<div class="grid">
+<div class="mini"><strong>Decision</strong><br><br>ACCEPT / PENDING</div>
+<div class="mini"><strong>Core Addition</strong><br><br>Reproduction Evidence Schema</div>
+<div class="mini"><strong>Status</strong><br><br>Structured Audit Evidence</div>
+<div class="mini"><strong>Model</strong><br><br>AI Claim → Reproduction Evidence → SHA256 Binding → QSP Decision</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Technical Evolution</h2>
+<p>Stage327 is not a replacement. It is an additional layer on top of the previous verification stack.</p>
+<div class="grid">
+<div class="mini"><strong>Stage320</strong><br><br>Proof URL Viewer<br>AI verification becomes a public proof URL.</div>
+<div class="mini"><strong>Stage321</strong><br><br>Signed Proof<br>Proof JSON is protected with a detached GPG signature.</div>
+<div class="mini"><strong>Stage322</strong><br><br>Audit History Chain<br>Proofs are connected into a tamper-evident history.</div>
+<div class="mini"><strong>Stage323</strong><br><br>YubiKey / GPG Signature<br>Issuer assurance is strengthened with hardware-backed signing.</div>
+<div class="mini"><strong>Stage325</strong><br><br>Audit Report Export<br>JSON, HTML, PDF, and verify text become a submission package.</div>
+<div class="mini"><strong>Stage326</strong><br><br>Same Target Check<br>AI claim and reproduction result are compared by repo, commit, file, line range, and SHA256.</div>
+<div class="mini"><strong>Stage327</strong><br><br>Reproduction Evidence Schema<br>Reproduction evidence is standardized into structured audit evidence.</div>
+</div>
+<pre>Stage320 → Stage321 → Stage322 → Stage323 → Stage325 → Stage326 → Stage327</pre>
+</div>
+
+<div class="card">
+<h2>What Stage327 Adds</h2>
+<div class="grid">
+<div class="mini"><strong>vulnerability_type</strong><br><br>Standard classification such as prompt-injection, sensitive-information-disclosure, or supply-chain.</div>
+<div class="mini"><strong>target</strong><br><br>The verified target: model-output, repository, commit, file, line-range, artifact, or workflow.</div>
+<div class="mini"><strong>ai_claim_id</strong><br><br>Identifier for the AI-generated vulnerability claim.</div>
+<div class="mini"><strong>reproduction_id</strong><br><br>Identifier for the reproduction evidence.</div>
+<div class="mini"><strong>result</strong><br><br>reproduced, not-reproduced, partial, or inconclusive.</div>
+<div class="mini"><strong>evidence_files</strong><br><br>Files used as evidence, such as prompt.txt, response.txt, and run.log.</div>
+<div class="mini"><strong>sha256</strong><br><br>Hash dictionary that binds every evidence file to an integrity value.</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Before / After</h2>
+<div class="grid">
+<div class="mini">
+<strong>Before Stage327</strong><br><br>
+AI vulnerability reports could remain free text.<br><br>
+<pre>“Prompt injection was reproduced.”</pre>
+</div>
+<div class="mini">
+<strong>After Stage327</strong><br><br>
+The reproduction result becomes structured, comparable, and hash-bound.<br><br>
+<pre>{
+  "vulnerability_type": "prompt-injection",
+  "evidence_files": ["prompt.txt", "response.txt", "run.log"],
+  "sha256": {
+    "prompt.txt": "...",
+    "response.txt": "...",
+    "run.log": "..."
+  }
+}</pre>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Reproduction Evidence Builder</h2>
+<p>
+Enter reproduction evidence metadata. Stage327 generates a structured evidence object before QSP decision.
+</p>
+
+<div class="grid">
+<div class="mini"><strong>Vulnerability Type</strong><br><br>
+<select id="vulnerability_type" style="width:100%">
+<option selected>prompt-injection</option>
+<option>sensitive-information-disclosure</option>
+<option>supply-chain</option>
+<option>insecure-output-handling</option>
+<option>excessive-agency</option>
+<option>model-denial-of-service</option>
+<option>training-data-poisoning</option>
+<option>model-theft</option>
+<option>overreliance</option>
+<option>misinformation</option>
+<option>other</option>
+</select>
+</div>
+
+<div class="mini"><strong>Target</strong><br><br>
+<select id="target" style="width:100%">
+<option selected>model-output</option>
+<option>repository</option>
+<option>commit</option>
+<option>file</option>
+<option>line-range</option>
+<option>api-response</option>
+<option>workflow</option>
+<option>artifact</option>
+<option>other</option>
+</select>
+</div>
+
+<div class="mini"><strong>AI Claim ID</strong><br><br><input id="ai_claim_id" style="width:100%" value="claim-001"></div>
+<div class="mini"><strong>Reproduction ID</strong><br><br><input id="reproduction_id" style="width:100%" value="repro-001"></div>
+
+<div class="mini"><strong>Result</strong><br><br>
+<select id="result" style="width:100%">
+<option selected>reproduced</option>
+<option>not-reproduced</option>
+<option>partial</option>
+<option>inconclusive</option>
+</select>
+</div>
+</div>
+
+<br>
+<strong>Evidence Files</strong><br><br>
+<textarea id="evidence_files" style="width:100%;height:80px">prompt.txt
+response.txt
+run.log</textarea>
+
+<br><br>
+<strong>SHA256 Dictionary</strong><br><br>
+<textarea id="sha256_map" style="width:100%;height:120px">{
+  "prompt.txt": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "response.txt": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "run.log": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+}</textarea>
+
+<br><br>
+<button type="button" onclick="generateEvidence()">Generate Reproduction Evidence JSON</button>
+
+<br><br>
+<pre id="generated-json">Generated Stage327 reproduction evidence JSON will appear here.</pre>
+</div>
+
+<script>
+function getValue(id) {
+  return document.getElementById(id).value.trim();
+}
+
+function generateEvidence() {
+  const evidenceFiles = getValue("evidence_files")
+    .split("\n")
+    .map(x => x.trim())
+    .filter(Boolean);
+
+  let sha256 = {};
+  try {
+    sha256 = JSON.parse(getValue("sha256_map"));
+  } catch (e) {
+    document.getElementById("generated-json").textContent =
+      "Invalid SHA256 JSON dictionary.";
+    return;
+  }
+
+  const missingHashes = evidenceFiles.filter(name => !sha256[name]);
+  const qspDecision = missingHashes.length === 0 ? "accept" : "pending";
+
+  const evidence = {
+    schema: "remeda.reproduction_evidence.v1",
+    stage: 327,
+    vulnerability_type: getValue("vulnerability_type"),
+    target: getValue("target"),
+    ai_claim_id: getValue("ai_claim_id"),
+    reproduction_id: getValue("reproduction_id"),
+    repository: getValue("repro_repo"),
+    commit: getValue("repro_commit"),
+    file: getValue("repro_file"),
+    line_range: getValue("repro_line"),
+    result: getValue("result"),
+    evidence_files: evidenceFiles,
+    sha256: sha256,
+    qsp_decision: {
+      evidence_schema_valid: true,
+      all_evidence_files_hash_bound: missingHashes.length === 0,
+      missing_hashes: missingHashes,
+      decision: qspDecision,
+      fail_closed: true
+    }
+  };
+
+  document.getElementById("generated-json").textContent =
+    JSON.stringify(evidence, null, 2);
+}
+</script>
+
+<div class="card">
+<h2>Stage326 + Stage327 Combined Model</h2>
+
+<p>
+Stage326 verifies whether the AI claim and the reproduction evidence refer to the same target.
+Stage327 standardizes the reproduction evidence itself into structured audit evidence.
+</p>
+
+<div class="grid">
+
+<div class="mini">
+<strong>Stage326</strong><br><br>
+Repository Match<br>
+Commit Match<br>
+File Match<br>
+Line Match
+</div>
+
+<div class="mini">
+<strong>Stage327</strong><br><br>
+Evidence Files<br>
+SHA256 Binding<br>
+Integrity Validation<br>
+Third-Party Verification
+</div>
+
+<div class="mini">
+<strong>Combined Result</strong><br><br>
+same_target = true<br>
+evidence_integrity = valid<br>
+qsp_decision = accept
+</div>
+
+</div>
+
+<pre>
+AI Claim
+↓
+Target Match Verification
+↓
+Reproduction Evidence
+↓
+SHA256 Binding
+↓
+Third-Party Verification
+↓
+QSP Decision
+</pre>
+
+</div>
+
+
+<div class="card">
+<h2>Core Question</h2>
+<pre>Can the AI vulnerability reproduction result be represented as structured,
+hash-bound, third-party-verifiable audit evidence?</pre>
+</div>
+
+<div class="card">
+<h2>Stage326 vs Stage327</h2>
+<div class="grid">
+<div class="mini"><strong>Stage326</strong><br><br>Checks whether the AI claim and reproduction result refer to the same target.</div>
+<div class="mini"><strong>Stage327</strong><br><br>Defines the standard format of the reproduction evidence itself.</div>
+</div>
+<pre>Stage326 = Same target verification
+Stage327 = Standardized reproduction evidence</pre>
+</div>
+
+<div class="card">
+<h2>Fail-Closed Rule</h2>
+<pre>If required evidence fields are missing
+or evidence files are not bound by SHA256
+→ pending or reject</pre>
+</div>
+
+<div class="card">
+<h2>Public Files</h2>
+<p><a href="../schemas/reproduction-evidence.schema.json">Reproduction Evidence Schema JSON</a></p>
+<p><a href="../examples/reproduction-evidence.example.json">Example Reproduction Evidence JSON</a></p>
+</div>
+
+<div class="card">
+<h2>JSON Translation Notice</h2>
+<div class="warning">
+Browser auto-translation may visually translate JSON keys.
+The actual files remain valid JSON.
+Field names such as vulnerability_type, evidence_files, sha256, and qsp_decision must remain unchanged.
+</div>
+</div>
+
+</div>
+</body>
+</html>
